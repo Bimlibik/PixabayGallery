@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">PixabayGallery</string>
+    <string name="label_menu_group_categories">Categories</string>
+    <string name="label_menu_animal">Animals</string>
+    <string name="label_menu_architecture">Architecture</string>
+    <string name="label_menu_music">Music</string>
+    <string name="label_menu_nature">Nature</string>
+    <string name="label_menu_places">Places</string>
+    <string name="label_pictures_not_found">Pictures not found</string>
+    <string name="content_description_default">Image</string>
+    <string name="content_description_pixabay_logo">Pixabay logo</string>
 </resources>

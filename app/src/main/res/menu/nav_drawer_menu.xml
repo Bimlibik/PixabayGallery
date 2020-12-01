@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/label_menu_group_categories">
+        <menu>
+            <item
+                android:id="@+id/menu_animals"
+                android:title="@string/label_menu_animal" />
+
+            <item
+                android:id="@+id/menu_architecture"
+                android:title="@string/label_menu_architecture" />
+
+            <item
+                android:id="@+id/menu_music"
+                android:title="@string/label_menu_music" />
+
+            <item
+                android:id="@+id/menu_nature"
+                android:title="@string/label_menu_nature" />
+
+            <item
+                android:id="@+id/menu_places"
+                android:title="@string/label_menu_places" />
+        </menu>
+    </item>
+
+</menu>
