@@ -26,7 +26,7 @@ class PicturesViewModel(
 
     val pictures: LiveData<List<ItemType>> = _pictures
 
-    val empty = Transformations.map(_pictures) {
+    val empty: LiveData<Boolean> = Transformations.map(_pictures) {
         it == null || it.isEmpty()
     }
 
@@ -34,6 +34,9 @@ class PicturesViewModel(
         _forceUpdate.value = true
     }
 
+    fun searchByCategory(category: String) {
+        _category.value = category
+    }
 
     private fun convertToItemType(pictures: List<Picture>): List<ItemType> {
         val newItems = mutableListOf<ItemType>()
@@ -47,9 +50,11 @@ class PicturesViewModel(
         val result = MutableLiveData<List<ItemType>>()
 
         viewModelScope.launch {
-            val remoteResult = picturesRepository.refreshCurrencies(query ?: "")
+            val remoteResult = picturesRepository.refreshPictures(query ?: "")
             if (remoteResult is Success) {
                 result.value = convertToItemType(remoteResult.data)
+            } else {
+                result.value = emptyList()
             }
         }
         return result

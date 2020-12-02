@@ -28,17 +28,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfig)
 
         nav_drawer.setupWithNavController(navController)
-        nav_drawer.setNavigationItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.menu_animals -> true
-                R.id.menu_architecture -> true
-                R.id.menu_music -> true
-                R.id.menu_nature -> true
-                R.id.menu_places -> true
-            }
-            drawer_layout.closeDrawers()
-            true
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
