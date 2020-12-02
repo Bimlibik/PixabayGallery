@@ -4,7 +4,7 @@ class PicturesRepository(
     private val picturesRemoteDataSource: PicturesDataSource
 ) : IPicturesRepository {
 
-    override suspend fun refreshCurrencies(query: String): Result<List<Picture>> =
+    override suspend fun refreshPictures(query: String): Result<List<Picture>> =
         updatePicturesFromNetwork(query)
 
     private suspend fun updatePicturesFromNetwork(query: String) =
