@@ -1,4 +1,4 @@
-package ru.bimlibik.pixabaygallery.ui
+package ru.bimlibik.pixabaygallery.ui.pictures
 
 import android.os.Bundle
 import android.view.LayoutInflater

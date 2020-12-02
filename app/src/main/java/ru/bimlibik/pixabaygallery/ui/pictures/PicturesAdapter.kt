@@ -1,4 +1,4 @@
-package ru.bimlibik.pixabaygallery.ui
+package ru.bimlibik.pixabaygallery.ui.pictures
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import ru.bimlibik.pixabaygallery.R
 import ru.bimlibik.pixabaygallery.databinding.ItemLoadBinding
 import ru.bimlibik.pixabaygallery.databinding.ItemPictureBinding
-import ru.bimlibik.pixabaygallery.ui.ItemType.*
+import ru.bimlibik.pixabaygallery.ui.pictures.ItemType.*
 
 class PicturesAdapter : ListAdapter<ItemType, GenericViewHolder>(PictureDiffCallback()) {
 

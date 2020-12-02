@@ -1,4 +1,4 @@
-package ru.bimlibik.pixabaygallery.ui
+package ru.bimlibik.pixabaygallery.ui.pictures
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

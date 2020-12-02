@@ -1,11 +1,11 @@
-package ru.bimlibik.pixabaygallery.ui
+package ru.bimlibik.pixabaygallery.ui.pictures
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import ru.bimlibik.pixabaygallery.data.IPicturesRepository
 import ru.bimlibik.pixabaygallery.data.Picture
 import ru.bimlibik.pixabaygallery.data.Result.*
-import ru.bimlibik.pixabaygallery.ui.ItemType.*
+import ru.bimlibik.pixabaygallery.ui.pictures.ItemType.*
 
 class PicturesViewModel(
     private val picturesRepository: IPicturesRepository

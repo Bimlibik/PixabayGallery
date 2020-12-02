@@ -7,6 +7,6 @@
 
     <fragment
         android:id="@+id/pictures_fragment"
-        android:name="ru.bimlibik.pixabaygallery.ui.PicturesFragment"
+        android:name="ru.bimlibik.pixabaygallery.ui.pictures.PicturesFragment"
         tools:layout="@layout/fragment_pictures"/>
 </navigation>

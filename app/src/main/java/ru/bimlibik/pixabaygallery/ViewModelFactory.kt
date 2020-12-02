@@ -6,7 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import ru.bimlibik.pixabaygallery.data.IPicturesRepository
-import ru.bimlibik.pixabaygallery.ui.PicturesViewModel
+import ru.bimlibik.pixabaygallery.ui.pictures.PicturesViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(

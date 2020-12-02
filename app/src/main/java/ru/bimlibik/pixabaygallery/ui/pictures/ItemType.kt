@@ -1,4 +1,4 @@
-package ru.bimlibik.pixabaygallery.ui
+package ru.bimlibik.pixabaygallery.ui.pictures
 
 import ru.bimlibik.pixabaygallery.data.Picture
 
