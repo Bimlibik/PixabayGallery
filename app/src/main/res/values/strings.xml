@@ -9,4 +9,5 @@
     <string name="label_pictures_not_found">Pictures not found</string>
     <string name="content_description_default">Image</string>
     <string name="content_description_pixabay_logo">Pixabay logo</string>
+    <string name="label_set_picture">Set</string>
 </resources>
