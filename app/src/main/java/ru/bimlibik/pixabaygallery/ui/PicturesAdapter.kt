@@ -41,7 +41,8 @@ class PicturesAdapter : ListAdapter<ItemType, GenericViewHolder>(PictureDiffCall
         GenericViewHolder(binding.root) {
 
         override fun bind(position: Int) {
-
+            val item = getItem(position)
+            binding.item = (item as PictureType).picture
         }
     }
 

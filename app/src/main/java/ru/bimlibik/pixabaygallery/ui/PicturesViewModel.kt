@@ -1,8 +1,15 @@
 package ru.bimlibik.pixabaygallery.ui
 
 import androidx.lifecycle.*
+import kotlinx.coroutines.launch
+import ru.bimlibik.pixabaygallery.data.IPicturesRepository
+import ru.bimlibik.pixabaygallery.data.Picture
+import ru.bimlibik.pixabaygallery.data.Result.*
+import ru.bimlibik.pixabaygallery.ui.ItemType.*
 
-class PicturesViewModel : ViewModel() {
+class PicturesViewModel(
+    private val picturesRepository: IPicturesRepository
+) : ViewModel() {
 
     private val _forceUpdate = MutableLiveData(false)
     private val _category = MutableLiveData<String>()
@@ -14,10 +21,7 @@ class PicturesViewModel : ViewModel() {
         }
 
     private val _pictures: LiveData<List<ItemType>> = _triggers.switchMap { pair ->
-        if (pair.first == true) {
-            TODO("Load pictures from remote data source.")
-        }
-        MutableLiveData()
+        loadPictures(pair.second)
     }
 
     val pictures: LiveData<List<ItemType>> = _pictures
@@ -26,6 +30,28 @@ class PicturesViewModel : ViewModel() {
         it == null || it.isEmpty()
     }
 
+    fun start() {
+        _forceUpdate.value = true
+    }
 
 
+    private fun convertToItemType(pictures: List<Picture>): List<ItemType> {
+        val newItems = mutableListOf<ItemType>()
+        pictures.forEach { picture ->
+            newItems.add(PictureType(picture))
+        }
+        return newItems
+    }
+
+    private fun loadPictures(query: String?): LiveData<List<ItemType>> {
+        val result = MutableLiveData<List<ItemType>>()
+
+        viewModelScope.launch {
+            val remoteResult = picturesRepository.refreshCurrencies(query ?: "")
+            if (remoteResult is Success) {
+                result.value = convertToItemType(remoteResult.data)
+            }
+        }
+        return result
+    }
 }
