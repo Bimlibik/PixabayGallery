@@ -12,17 +12,17 @@ class PicturesRemoteDataSource(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : PicturesDataSource {
 
-    override suspend fun getPictures(query: String): Result<List<Picture>> =
+    override suspend fun getPictures(query: String, page: Int): Result<List<Picture>> =
         withContext(ioDispatcher) {
             return@withContext try {
-                Success(searchPictures(query))
+                Success(searchPictures(query, page))
             } catch (e: Exception) {
                 Error(e)
             }
         }
 
-    private suspend fun searchPictures(query: String): List<Picture> {
+    private suspend fun searchPictures(query: String, page: Int): List<Picture> {
         val apiClient = ApiClient.client.create(PictureApiInterface::class.java)
-        return apiClient.getPictures(query = query).pictures.toList()
+        return apiClient.getPictures(query = query, page = page).pictures.toList()
     }
 }

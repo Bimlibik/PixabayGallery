@@ -11,6 +11,7 @@ interface PictureApiInterface {
     suspend fun getPictures(
         @Query("key") apiKey: String = BuildConfig.PIXABAY_API_KEY,
         @Query("q") query: String,
-        @Query("image_type") imageType: String = "photo"
+        @Query("image_type") imageType: String = "photo",
+        @Query("page") page: Int
     ): PictureResponse
 }

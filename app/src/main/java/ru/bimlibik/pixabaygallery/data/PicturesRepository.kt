@@ -4,11 +4,11 @@ class PicturesRepository(
     private val picturesRemoteDataSource: PicturesDataSource
 ) : IPicturesRepository {
 
-    override suspend fun refreshPictures(query: String): Result<List<Picture>> =
-        updatePicturesFromNetwork(query)
+    override suspend fun refreshPictures(query: String, page: Int): Result<List<Picture>> =
+        updatePicturesFromNetwork(query, page)
 
-    private suspend fun updatePicturesFromNetwork(query: String) =
-        picturesRemoteDataSource.getPictures(query)
+    private suspend fun updatePicturesFromNetwork(query: String, page: Int) =
+        picturesRemoteDataSource.getPictures(query, page)
 
     companion object {
         private var instance: PicturesRepository? = null

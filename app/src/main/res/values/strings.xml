@@ -12,4 +12,5 @@
     <string name="label_set_picture">Set</string>
     <string name="snackbar_success">Wallpaper has been successfully updated</string>
     <string name="snackbar_error">Error while setting wallpaper</string>
+    <string name="snackbar_end_of_list">You have looked all the pictures in this category</string>
 </resources>
