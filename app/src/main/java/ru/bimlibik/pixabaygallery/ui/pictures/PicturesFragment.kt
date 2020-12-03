@@ -16,6 +16,7 @@ import ru.bimlibik.pixabaygallery.WallpaperWorker
 import ru.bimlibik.pixabaygallery.databinding.FragmentPicturesBinding
 import ru.bimlibik.pixabaygallery.utils.EventObserver
 import ru.bimlibik.pixabaygallery.utils.getViewModelFactory
+import ru.bimlibik.pixabaygallery.utils.setupSnackbar
 
 class PicturesFragment : Fragment() {
 
@@ -36,12 +37,14 @@ class PicturesFragment : Fragment() {
         viewDataBinding.lifecycleOwner = this
         viewModel.start()
         setupAdapter()
+        setupSnackbar()
         setupNavDrawerListener()
         observeViewModelEvent()
     }
 
     private fun observeViewModelEvent() {
         viewModel.wallpaperEvent.observe(viewLifecycleOwner, EventObserver { largeImageURL ->
+            val workManager = WorkManager.getInstance(requireContext())
             val url = Data.Builder()
                 .putString(WallpaperWorker.IMAGE_URL, largeImageURL)
                 .build()
@@ -50,7 +53,10 @@ class PicturesFragment : Fragment() {
                 .setInputData(url)
                 .build()
 
-            WorkManager.getInstance(requireContext()).enqueue(request)
+            workManager.enqueue(request)
+            workManager.getWorkInfoByIdLiveData(request.id).observe(viewLifecycleOwner) { info ->
+                viewModel.showInfo(info.state)
+            }
         })
     }
 
@@ -63,6 +69,10 @@ class PicturesFragment : Fragment() {
             drawerLayout.closeDrawers()
             true
         }
+    }
+
+    private fun setupSnackbar() {
+        view?.setupSnackbar(this, viewModel.snackbarText)
     }
 
     private fun setupAdapter() {

@@ -10,4 +10,6 @@
     <string name="content_description_default">Image</string>
     <string name="content_description_pixabay_logo">Pixabay logo</string>
     <string name="label_set_picture">Set</string>
+    <string name="snackbar_success">Wallpaper has been successfully updated</string>
+    <string name="snackbar_error">Error while setting wallpaper</string>
 </resources>
