@@ -7,9 +7,14 @@ import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.material.navigation.NavigationView
 import ru.bimlibik.pixabaygallery.R
+import ru.bimlibik.pixabaygallery.WallpaperWorker
 import ru.bimlibik.pixabaygallery.databinding.FragmentPicturesBinding
+import ru.bimlibik.pixabaygallery.utils.EventObserver
 import ru.bimlibik.pixabaygallery.utils.getViewModelFactory
 
 class PicturesFragment : Fragment() {
@@ -32,6 +37,21 @@ class PicturesFragment : Fragment() {
         viewModel.start()
         setupAdapter()
         setupNavDrawerListener()
+        observeViewModelEvent()
+    }
+
+    private fun observeViewModelEvent() {
+        viewModel.wallpaperEvent.observe(viewLifecycleOwner, EventObserver { largeImageURL ->
+            val url = Data.Builder()
+                .putString(WallpaperWorker.IMAGE_URL, largeImageURL)
+                .build()
+
+            val request = OneTimeWorkRequestBuilder<WallpaperWorker>()
+                .setInputData(url)
+                .build()
+
+            WorkManager.getInstance(requireContext()).enqueue(request)
+        })
     }
 
     private fun setupNavDrawerListener() {
@@ -46,7 +66,7 @@ class PicturesFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        viewDataBinding.recycler.adapter = PicturesAdapter()
+        viewDataBinding.recycler.adapter = PicturesAdapter(viewModel)
     }
 
 

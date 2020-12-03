@@ -4,8 +4,9 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import ru.bimlibik.pixabaygallery.data.IPicturesRepository
 import ru.bimlibik.pixabaygallery.data.Picture
-import ru.bimlibik.pixabaygallery.data.Result.*
-import ru.bimlibik.pixabaygallery.ui.pictures.ItemType.*
+import ru.bimlibik.pixabaygallery.data.Result.Success
+import ru.bimlibik.pixabaygallery.ui.pictures.ItemType.PictureType
+import ru.bimlibik.pixabaygallery.utils.Event
 
 class PicturesViewModel(
     private val picturesRepository: IPicturesRepository
@@ -30,12 +31,19 @@ class PicturesViewModel(
         it == null || it.isEmpty()
     }
 
+    private val _wallpaperEvent = MutableLiveData<Event<String>>()
+    val wallpaperEvent: LiveData<Event<String>> = _wallpaperEvent
+
     fun start() {
         _forceUpdate.value = true
     }
 
     fun searchByCategory(category: String) {
         _category.value = category
+    }
+
+    fun setPictureAsWallpaper(largeImageURL: String) {
+        _wallpaperEvent.value = Event(largeImageURL)
     }
 
     private fun convertToItemType(pictures: List<Picture>): List<ItemType> {

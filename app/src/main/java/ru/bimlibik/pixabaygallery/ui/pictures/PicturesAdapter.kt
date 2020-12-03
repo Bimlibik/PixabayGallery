@@ -11,7 +11,9 @@ import ru.bimlibik.pixabaygallery.databinding.ItemLoadBinding
 import ru.bimlibik.pixabaygallery.databinding.ItemPictureBinding
 import ru.bimlibik.pixabaygallery.ui.pictures.ItemType.*
 
-class PicturesAdapter : ListAdapter<ItemType, GenericViewHolder>(PictureDiffCallback()) {
+class PicturesAdapter(
+    private val viewModel: PicturesViewModel
+) : ListAdapter<ItemType, GenericViewHolder>(PictureDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenericViewHolder {
         val binding: ViewDataBinding =
@@ -43,6 +45,7 @@ class PicturesAdapter : ListAdapter<ItemType, GenericViewHolder>(PictureDiffCall
         override fun bind(position: Int) {
             val item = getItem(position)
             binding.item = (item as PictureType).picture
+            binding.viewModel = viewModel
         }
     }
 

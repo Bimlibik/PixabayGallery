@@ -5,6 +5,9 @@
         <variable
             name="item"
             type="ru.bimlibik.pixabaygallery.data.Picture" />
+        <variable
+            name="viewModel"
+            type="ru.bimlibik.pixabaygallery.ui.pictures.PicturesViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,7 +33,8 @@
             android:background="#66FFFFFF"
             android:text="@string/label_set_picture"
             android:textColor="@color/pictureTextColor"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="@{()-> viewModel.setPictureAsWallpaper(item.largeImageURL)}"/>
 
     </RelativeLayout>
 </layout>
