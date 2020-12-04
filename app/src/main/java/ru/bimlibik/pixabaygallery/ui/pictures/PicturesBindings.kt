@@ -19,10 +19,13 @@ object PicturesBindings {
     @BindingAdapter("app:preview")
     @JvmStatic
     fun setPicture(imageView: ImageView, previewURL: String) {
+        val displayMetrics = imageView.context.resources.displayMetrics
+        val width = displayMetrics.widthPixels / 2
+        val height = imageView.height
         Picasso.with(imageView.context)
             .load(previewURL)
             .placeholder(R.drawable.ic_image)
-            .resize(150, 150)
+            .resize(width, height)
             .centerCrop()
             .into(imageView)
     }
